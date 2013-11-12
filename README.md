@@ -4,14 +4,17 @@ This repository holds the code that powers http://planet.webcompat.com, a "Plane
 
 ## Building
 
-`git clone git@github.com:miketaylr/planet.webcompat.com.git`
-`cd planet.webcompat.com`
-`git submodule init && git submodule update`
-`python venus/planet.py config.ini`*
+```
+git clone git@github.com:miketaylr/planet.webcompat.com.git
+cd planet.webcompat.com
+git submodule init && git submodule update
+python venus/planet.py config.ini
+```
+*
 
 The generated assets will be in `output/`.
 
-*You may need to grab some of Venus's depedencies depending on your setup.
+*You may need to grab some of Venus' depedencies depending on your setup.
 
 ## Contributing
 
