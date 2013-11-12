@@ -18,6 +18,6 @@ The generated assets will be in `output/`.
 
 ## Contributing
 
-If you'd like to add your blog or feed for a "webcompat" tag (or similar), send a pull request updating the config.ini in the appropriate place.
+If you'd like to add your blog or feed for a "webcompat" tag (or similar), send a pull request updating the config.ini in the [appropriate place](https://github.com/miketaylr/planet.webcompat.com/blob/master/config.ini#L22).
 
 Pull requests are also welcome for other aspects of the site, e.g., theme improvements.
