@@ -167,12 +167,13 @@
   </xsl:template>
 
   <xsl:template match="atom:entry">
+    <section class="newsday">
     <!-- date header -->
     <xsl:variable name="date" select="substring(atom:updated,1,10)"/>
     <xsl:if test="not(preceding-sibling::atom:entry
       [substring(atom:updated,1,10) = $date])">
       <xsl:text>&#10;&#10;</xsl:text>
-      <h2>
+      <h2 class="day">
         <time datetime="{$date}">
           <xsl:value-of select="substring-before(atom:updated/@planet:format,', ')"/>
           <xsl:text>, </xsl:text>
@@ -182,7 +183,7 @@
     </xsl:if>
 
     <xsl:text>&#10;&#10;</xsl:text>
-    <div class="news {atom:source/planet:css-id}">
+    <article class="news {atom:source/planet:css-id}">
 
       <xsl:if test="@xml:lang">
         <xsl:attribute name="xml:lang">
@@ -192,16 +193,29 @@
 
       <!-- entry title -->
       <xsl:text>&#10;</xsl:text>
-      <h3>
-        <xsl:choose>
+      <h3 class="posttitle permalink">
+<!--         <xsl:choose>
           <xsl:when test="atom:source/atom:icon">
             <img src="{atom:source/atom:icon}" class="icon"/>
           </xsl:when>
           <xsl:when test="atom:source/planet:favicon">
             <img src="{atom:source/planet:favicon}" class="icon"/>
           </xsl:when>
-        </xsl:choose>
-        <a>
+        </xsl:choose> -->
+        <xsl:if test="string-length(atom:title) &gt; 0">
+          <xsl:text>&#x2014;</xsl:text>
+          <a href="{atom:link[@rel='alternate']/@href}">
+            <xsl:if test="atom:title/@xml:lang != @xml:lang">
+              <xsl:attribute name="xml:lang" select="{atom:title/@xml:lang}"/>
+            </xsl:if>
+            <xsl:value-of select="atom:title"/>
+          </a>
+        </xsl:if>
+      </h3>
+      <!-- entry meta -->
+      <div class="meta">
+        <!--Blog title-->
+        <a class="blogtitle">
           <xsl:if test="atom:source/atom:link[@rel='alternate']/@href">
             <xsl:attribute name="href">
               <xsl:value-of
@@ -214,31 +228,39 @@
           </xsl:attribute>
           <xsl:value-of select="atom:source/planet:name"/>
         </a>
-        <xsl:if test="string-length(atom:title) &gt; 0">
-          <xsl:text>&#x2014;</xsl:text>
-          <a href="{atom:link[@rel='alternate']/@href}">
-            <xsl:if test="atom:title/@xml:lang != @xml:lang">
-              <xsl:attribute name="xml:lang" select="{atom:title/@xml:lang}"/>
+
+        <!-- Author name -->
+        <xsl:choose>
+          <xsl:when test="atom:author/atom:name">
+            <xsl:if test="not(atom:link[@rel='license'] or
+                              atom:source/atom:link[@rel='license'] or
+                              atom:rights or atom:source/atom:rights)">
+              <xsl:text>by </xsl:text>
             </xsl:if>
-            <xsl:value-of select="atom:title"/>
-          </a>
-        </xsl:if>
-      </h3>
+            <span class="author">
+              <xsl:value-of select="atom:author/atom:name"/>
+            </span>
+            <xsl:text> at </xsl:text>
+          </xsl:when>
+          <xsl:when test="atom:source/atom:author/atom:name">
+            <xsl:if test="not(atom:link[@rel='license'] or
+                              atom:source/atom:link[@rel='license'] or
+                              atom:rights or atom:source/atom:rights)">
+              <xsl:text>by </xsl:text>
+            </xsl:if>
+            <span class="author">
+              <xsl:value-of select="atom:source/atom:author/atom:name"/>
+            </span>
+            <xsl:text> at </xsl:text>
+          </xsl:when>
+        </xsl:choose>
 
-      <!-- entry content -->
-      <xsl:text>&#10;</xsl:text>
-      <xsl:choose>
-        <xsl:when test="atom:content">
-          <xsl:apply-templates select="atom:content"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates select="atom:summary"/>
-        </xsl:otherwise>
-      </xsl:choose>
+        <!-- Publication time -->
+        <time class="postdate" datetime="{atom:updated}" title="GMT">
+          <xsl:value-of select="atom:updated/@planet:format"/>
+        </time>
 
-      <!-- entry footer -->
-      <xsl:text>&#10;</xsl:text>
-      <div class="permalink">
+<!--  License stuff on hold
         <xsl:if test="atom:link[@rel='license'] or
                       atom:source/atom:link[@rel='license'] or
                       atom:rights or atom:source/atom:rights">
@@ -268,34 +290,25 @@
             <xsl:text>&#169;</xsl:text>
           </a>
           <xsl:text> </xsl:text>
-        </xsl:if>
-        <a href="{atom:link[@rel='alternate']/@href}">
-          <xsl:choose>
-            <xsl:when test="atom:author/atom:name">
-              <xsl:if test="not(atom:link[@rel='license'] or
-                                atom:source/atom:link[@rel='license'] or
-                                atom:rights or atom:source/atom:rights)">
-                <xsl:text>by </xsl:text>
-              </xsl:if>
-              <xsl:value-of select="atom:author/atom:name"/>
-              <xsl:text> at </xsl:text>
-            </xsl:when>
-            <xsl:when test="atom:source/atom:author/atom:name">
-              <xsl:if test="not(atom:link[@rel='license'] or
-                                atom:source/atom:link[@rel='license'] or
-                                atom:rights or atom:source/atom:rights)">
-                <xsl:text>by </xsl:text>
-              </xsl:if>
-              <xsl:value-of select="atom:source/atom:author/atom:name"/>
-              <xsl:text> at </xsl:text>
-            </xsl:when>
-          </xsl:choose>
-          <time datetime="{atom:updated}" title="GMT">
-            <xsl:value-of select="atom:updated/@planet:format"/>
-          </time>
-        </a>
+        </xsl:if>        
+ -->
       </div>
-    </div>
+
+      <!-- entry content -->
+      <div class="post">
+        <xsl:text>&#10;</xsl:text>
+        <xsl:choose>
+          <xsl:when test="atom:content">
+            <xsl:apply-templates select="atom:content"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="atom:summary"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </div>
+
+    </article>
+    </section>
 
   </xsl:template>
 
