@@ -51,13 +51,39 @@ abbr {border-bottom: 1px dotted rgb(79, 74, 75);}
 
 /* "responsive" */
 img {max-width:100%;}
+pre {white-space: pre-wrap;}
+
+/* Title */
+
+h1 {padding: 1rem;
+	font-size: 2rem;
+	background-color: rgb(240,240,240);}
+
+/* body */
+
+#body {margin: 0 1rem;}
 
 
 /* news of the day */
 
 .newsday {margin-top: 1rem;}
-.day {padding: 1rem;}
+.day {padding: 1rem;
+	background-color: rgb(230,230,230);}
 
 /* Each article */
+
+article {max-width: 50rem;
+	font-size: 1rem;
+	line-height: 1.6rem;}
+
+p  {margin: 1rem 0;}
+ul, dl, ol, blockquote, pre, table {
+	margin: 2rem 0;}
+
+pre {
+	font-size: .9rem;
+    font-family: "Andale Mono", "Courier New", Courier, monospace;
+	line-height: 1.2rem;}
+
 
 /* Meta */
