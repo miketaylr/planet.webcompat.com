@@ -1,1 +1,63 @@
-/* TODO: um, a theme */
+/* 
+Web Compatibility Theme
+http://planet.webcompat.com/
+Web site started on November 2013
+Because we love the Web.
+
+You said we suck at design, be our guest
+https://github.com/miketaylr/planet.webcompat.com
+*/
+
+/*# RESET STYLE TO BE REMOVED*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,figure,figcaption,article,footer,header  {
+        margin:0;
+        padding:0;
+}
+table {
+        border-collapse:collapse;
+        border-spacing:0;
+}
+fieldset,img {
+        border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+        font-style:normal;
+        font-weight:normal;
+}
+ol,ul {
+        list-style:none;
+}
+caption,th {
+        text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+        font-size:100%;
+        font-weight:normal;
+}
+q:before,q:after {
+        content:'';
+}
+abbr,acronym { border:0;
+}
+
+/*# END OF RESET*/
+
+@viewport {width: device-width;}
+
+/* some very very very basic stuff */
+strong {font-weight: bold;}
+em {font-style: italic;}
+abbr {border-bottom: 1px dotted rgb(79, 74, 75);}
+
+/* "responsive" */
+img {max-width:100%;}
+
+
+/* news of the day */
+
+.newsday {margin-top: 1rem;}
+.day {padding: 1rem;}
+
+/* Each article */
+
+/* Meta */
