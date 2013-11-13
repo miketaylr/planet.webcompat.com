@@ -167,6 +167,7 @@
   </xsl:template>
 
   <xsl:template match="atom:entry">
+    <xsl:text>&#10;&#10;</xsl:text>
     <section class="newsday">
     <!-- date header -->
     <xsl:variable name="date" select="substring(atom:updated,1,10)"/>
@@ -227,7 +228,7 @@
             <xsl:value-of select="atom:source/atom:title"/>
           </xsl:attribute>
           <xsl:value-of select="atom:source/planet:name"/>
-        </a>
+        </a> 
 
         <!-- Author name -->
         <xsl:choose>
@@ -235,7 +236,7 @@
             <xsl:if test="not(atom:link[@rel='license'] or
                               atom:source/atom:link[@rel='license'] or
                               atom:rights or atom:source/atom:rights)">
-              <xsl:text>by </xsl:text>
+              <xsl:text> by </xsl:text>
             </xsl:if>
             <span class="author">
               <xsl:value-of select="atom:author/atom:name"/>
@@ -246,7 +247,7 @@
             <xsl:if test="not(atom:link[@rel='license'] or
                               atom:source/atom:link[@rel='license'] or
                               atom:rights or atom:source/atom:rights)">
-              <xsl:text>by </xsl:text>
+              <xsl:text> by </xsl:text>
             </xsl:if>
             <span class="author">
               <xsl:value-of select="atom:source/atom:author/atom:name"/>
