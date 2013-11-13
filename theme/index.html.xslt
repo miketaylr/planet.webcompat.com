@@ -18,6 +18,7 @@
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="default.css" type="text/css" />
         <title><xsl:value-of select="atom:title"/></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="noindex,nofollow" />
         <meta name="generator" content="{atom:generator}" />
         <xsl:if test="atom:link[@rel='self']">
