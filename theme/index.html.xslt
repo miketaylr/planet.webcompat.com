@@ -308,7 +308,7 @@
       </div>
 
     </article>
-    <section>
+    </section>
 
   </xsl:template>
 
