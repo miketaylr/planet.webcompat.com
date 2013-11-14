@@ -16,8 +16,9 @@
       <xsl:text>&#10;&#10;</xsl:text>
       <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" href="default.css" type="text/css" />
+        <link rel="stylesheet" href="theme.css" type="text/css" />
         <title><xsl:value-of select="atom:title"/></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="noindex,nofollow" />
         <meta name="generator" content="{atom:generator}" />
         <xsl:if test="atom:link[@rel='self']">
@@ -167,6 +168,7 @@
   </xsl:template>
 
   <xsl:template match="atom:entry">
+    <xsl:text>&#10;&#10;</xsl:text>
     <section class="newsday">
     <!-- date header -->
     <xsl:variable name="date" select="substring(atom:updated,1,10)"/>
@@ -203,7 +205,7 @@
           </xsl:when>
         </xsl:choose> -->
         <xsl:if test="string-length(atom:title) &gt; 0">
-          <xsl:text>&#x2014;</xsl:text>
+          <!-- <xsl:text>&#x2014;</xsl:text> -->
           <a href="{atom:link[@rel='alternate']/@href}">
             <xsl:if test="atom:title/@xml:lang != @xml:lang">
               <xsl:attribute name="xml:lang" select="{atom:title/@xml:lang}"/>
@@ -235,7 +237,7 @@
             <xsl:if test="not(atom:link[@rel='license'] or
                               atom:source/atom:link[@rel='license'] or
                               atom:rights or atom:source/atom:rights)">
-              <xsl:text>by </xsl:text>
+              <xsl:text> by </xsl:text>
             </xsl:if>
             <span class="author">
               <xsl:value-of select="atom:author/atom:name"/>
@@ -246,7 +248,7 @@
             <xsl:if test="not(atom:link[@rel='license'] or
                               atom:source/atom:link[@rel='license'] or
                               atom:rights or atom:source/atom:rights)">
-              <xsl:text>by </xsl:text>
+              <xsl:text> by </xsl:text>
             </xsl:if>
             <span class="author">
               <xsl:value-of select="atom:source/atom:author/atom:name"/>
@@ -290,7 +292,7 @@
             <xsl:text>&#169;</xsl:text>
           </a>
           <xsl:text> </xsl:text>
-        </xsl:if>        
+        </xsl:if>
  -->
       </div>
 
