@@ -55,35 +55,92 @@ pre {white-space: pre-wrap;}
 
 /* Title */
 
-h1 {padding: 1rem;
-	font-size: 2rem;
-	background-color: rgb(240,240,240);}
+h1 {padding: 1rem 1rem 1rem 5rem;
+	font-size: 1rem;
+	background-color: rgb(240,240,240);
+	color: rgb(40,40,40);
+	background-image: url("canopener-ico.png");
+	background-size: 5rem;
+	background-repeat: no-repeat;
+	background-position: left, center;
+	font-family: "Andale Mono", "Courier New", Courier, monospace;
+	margin-bottom: 0;}
 
 /* body */
 
-#body {margin: 0 1rem;}
+#body {margin: 0;
+	padding:0;}
 
 
 /* news of the day */
 
-.newsday {margin-top: 1rem;}
-.day {padding: 1rem;
-	background-color: rgb(230,230,230);}
+.newsday {margin: 0 0 1rem 0;}
+.day {
+	margin:0;
+	padding: 1rem;
+	background-color: rgb(255,255,255);
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 1.2rem;
+	color: rgb(160,160,160);}
 
 /* Each article */
 
-article {max-width: 50rem;
+article.news {
+	padding: 1rem;
+	max-width: 50rem;
 	font-size: 1rem;
 	line-height: 1.6rem;}
 
-p  {margin: 1rem 0;}
-ul, dl, ol, blockquote, pre, table {
-	margin: 2rem 0;}
+h3.posttitle a {
+	font-size: 1.3rem;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	text-decoration: none;
+	color: rgb(40,40,40);
+}
 
-pre {
+/* Taking care of the style armageddon for articles */
+article h1 {font-weight: bold;
+	font-size:1.4rem;}
+article h2 {font-weight: bold;
+	font-size:1.3rem;}
+article h3 {font-weight: bold;
+	font-size:1.2rem;}
+article h4 {font-weight: bold;
+	font-size:1.1rem;}
+article h5 {font-weight: bold;
+	font-size:1rem;}
+article h6 {font-weight: bold;
+	font-size:1rem;}
+
+article p  {margin: 1rem 0;}
+article ul, article dl, article ol, article blockquote, article pre, article table {
+	margin: 2rem 1rem;}
+article li {list-style-type: disc;
+	list-style-position: inside;}
+
+article a {text-decoration: none;
+	border-bottom: 1px dotted rgb(200,200,200);
+	color: rgb(); }
+article a:visited {color:rgb(40,40,40);}
+
+article pre {
 	font-size: .9rem;
     font-family: "Andale Mono", "Courier New", Courier, monospace;
 	line-height: 1.2rem;}
 
 
 /* Meta */
+
+.meta {	
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	color: rgb(140,140,140);}
+.meta a.blogtitle {
+	text-decoration: none;
+	color: rgb(99,00,00);
+}
+
+.author {color: rgb(40,40,40);}
+.postdate {color: rgb(40,40,40);}
+
+

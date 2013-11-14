@@ -232,68 +232,32 @@
         </a>
 
         <!-- Author name -->
-        <xsl:choose>
-          <xsl:when test="atom:author/atom:name">
-            <xsl:if test="not(atom:link[@rel='license'] or
-                              atom:source/atom:link[@rel='license'] or
-                              atom:rights or atom:source/atom:rights)">
-              <xsl:text> by </xsl:text>
-            </xsl:if>
-            <span class="author">
-              <xsl:value-of select="atom:author/atom:name"/>
-            </span>
-            <xsl:text> at </xsl:text>
-          </xsl:when>
-          <xsl:when test="atom:source/atom:author/atom:name">
-            <xsl:if test="not(atom:link[@rel='license'] or
-                              atom:source/atom:link[@rel='license'] or
-                              atom:rights or atom:source/atom:rights)">
-              <xsl:text> by </xsl:text>
-            </xsl:if>
-            <span class="author">
-              <xsl:value-of select="atom:source/atom:author/atom:name"/>
-            </span>
-            <xsl:text> at </xsl:text>
-          </xsl:when>
-        </xsl:choose>
+        <xsl:text>&#10;</xsl:text>
+        <span class="metaauthor">
+          <xsl:choose>
+            <xsl:when test="atom:author/atom:name">
+                <xsl:text> by </xsl:text>
+                <span class="author">
+                  <xsl:value-of select="atom:author/atom:name"/>
+                </span>
+            </xsl:when>
+            <xsl:when test="atom:source/atom:author/atom:name">
+                <xsl:text> by </xsl:text>
+                <span class="author">
+                  <xsl:value-of select="atom:source/atom:author/atom:name"/>
+                </span>
+            </xsl:when>
+          </xsl:choose>
+        </span>
 
         <!-- Publication time -->
-        <time class="postdate" datetime="{atom:updated}" title="GMT">
-          <xsl:value-of select="atom:updated/@planet:format"/>
-        </time>
-
-<!--  License stuff on hold
-        <xsl:if test="atom:link[@rel='license'] or
-                      atom:source/atom:link[@rel='license'] or
-                      atom:rights or atom:source/atom:rights">
-          <a>
-            <xsl:if test="atom:source/atom:link[@rel='license']/@href">
-              <xsl:attribute name="rel">license</xsl:attribute>
-              <xsl:attribute name="href">
-                <xsl:value-of select="atom:source/atom:link[@rel='license']/@href"/>
-              </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="atom:link[@rel='license']/@href">
-              <xsl:attribute name="rel">license</xsl:attribute>
-              <xsl:attribute name="href">
-                <xsl:value-of select="atom:link[@rel='license']/@href"/>
-              </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="atom:source/atom:rights">
-              <xsl:attribute name="title">
-                <xsl:value-of select="atom:source/atom:rights"/>
-              </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="atom:rights">
-              <xsl:attribute name="title">
-                <xsl:value-of select="atom:rights"/>
-              </xsl:attribute>
-            </xsl:if>
-            <xsl:text>&#169;</xsl:text>
-          </a>
-          <xsl:text> </xsl:text>
-        </xsl:if>
- -->
+        <xsl:text>&#10;</xsl:text>
+        <span class="time">
+          <xsl:text> at </xsl:text>
+          <time class="postdate" datetime="{atom:updated}" title="GMT">
+            <xsl:value-of select="atom:updated/@planet:format"/>
+          </time>
+      </span>
       </div>
 
       <!-- entry content -->
