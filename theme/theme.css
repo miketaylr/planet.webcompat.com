@@ -88,21 +88,35 @@ article.news {
 	font-size: 1rem;
 	line-height: 1.6rem;}
 
-p  {margin: 1rem 0;}
-ul, dl, ol, blockquote, pre, table {
-	margin: 2rem 0;}
-
-pre {
-	font-size: .9rem;
-    font-family: "Andale Mono", "Courier New", Courier, monospace;
-	line-height: 1.2rem;}
-
 h3.posttitle a {
 	font-size: 1.3rem;
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	text-decoration: none;
 	color: rgb(40,40,40);
 }
+
+/* Taking care of the style armageddon for articles */
+article h1 {font-weight: bold;
+	font-size:1.4rem;}
+article h2 {font-weight: bold;
+	font-size:1.3rem;}
+article h3 {font-weight: bold;
+	font-size:1.2rem;}
+article h4 {font-weight: bold;
+	font-size:1.1rem;}
+article h5 {font-weight: bold;
+	font-size:1rem;}
+article h6 {font-weight: bold;
+	font-size:1rem;}
+
+article p  {margin: 1rem 0;}
+article ul, article dl, article ol, article blockquote, article pre, article table {
+	margin: 2rem 0;}
+
+article pre {
+	font-size: .9rem;
+    font-family: "Andale Mono", "Courier New", Courier, monospace;
+	line-height: 1.2rem;}
 
 
 /* Meta */
