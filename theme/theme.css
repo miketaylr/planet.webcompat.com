@@ -78,11 +78,11 @@ h1 {padding: 1rem 1rem 1rem 5rem;
 .day {
 	margin:0;
 	padding: 1rem;
-	background-color: rgb(230,230,230);
+	background-color: rgb(255,255,255);
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 1.2rem;
-	color: rgb(120,120,120);}
+	color: rgb(160,160,160);}
 
 /* Each article */
 
@@ -115,7 +115,14 @@ article h6 {font-weight: bold;
 
 article p  {margin: 1rem 0;}
 article ul, article dl, article ol, article blockquote, article pre, article table {
-	margin: 2rem 0;}
+	margin: 2rem 1rem;}
+article li {list-style-type: disc;
+	list-style-position: inside;}
+
+article a {text-decoration: none;
+	border-bottom: 1px dotted rgb(200,200,200);
+	color: rgb(); }
+article a:visited {color:rgb(40,40,40);}
 
 article pre {
 	font-size: .9rem;
@@ -125,7 +132,8 @@ article pre {
 
 /* Meta */
 
-.meta {	font-family: "Helvetica Neue", Helvetica, sans-serif;
+.meta {	
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	color: rgb(140,140,140);}
 .meta a.blogtitle {
 	text-decoration: none;
