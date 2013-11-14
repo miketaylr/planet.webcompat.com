@@ -78,7 +78,11 @@ h1 {padding: 1rem 1rem 1rem 5rem;
 .day {
 	margin:0;
 	padding: 1rem;
-	background-color: rgb(230,230,230);}
+	background-color: rgb(230,230,230);
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 1.2rem;
+	color: rgb(120,120,120);}
 
 /* Each article */
 
