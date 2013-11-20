@@ -1,4 +1,4 @@
-/* 
+/*
 Web Compatibility Theme
 http://planet.webcompat.com/
 Web site started on November 2013
@@ -132,7 +132,7 @@ article pre {
 
 /* Meta */
 
-.meta {	
+.meta {
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	color: rgb(140,140,140);}
 .meta a.blogtitle {
@@ -143,4 +143,14 @@ article pre {
 .author {color: rgb(40,40,40);}
 .postdate {color: rgb(40,40,40);}
 
+/* Sidebar and Footer*/
 
+#sidebar, #footer {
+    padding: 0 1rem;
+    background-color: #F0F0F0;}
+#sidebar h2, #footer h2 {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: bold;
+    padding:  0.5rem 0}
+#footer li li, #sidebar dd {
+    padding: 0 1rem;}
