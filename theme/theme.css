@@ -50,7 +50,7 @@ em {font-style: italic;}
 abbr {border-bottom: 1px dotted rgb(79, 74, 75);}
 
 /* "responsive" */
-img {max-width:100%;}
+img {width:100%;}
 pre {white-space: pre-wrap;}
 
 /* Title */
@@ -59,8 +59,7 @@ h1 {padding: 1rem 1rem 1rem 5rem;
 	font-size: 1rem;
 	background-color: rgb(240,240,240);
 	color: rgb(40,40,40);
-	background-image: url("canopener-ico.png");
-	background-size: 5rem;
+	background-image: url("underconstruction.gif");
 	background-repeat: no-repeat;
 	background-position: left, center;
 	font-family: "Andale Mono", "Courier New", Courier, monospace;
@@ -68,7 +67,7 @@ h1 {padding: 1rem 1rem 1rem 5rem;
 
 /* body */
 
-#body {margin: 0;
+#body {margin: 0 auto;
 	padding:0;}
 
 
@@ -78,17 +77,16 @@ h1 {padding: 1rem 1rem 1rem 5rem;
 .day {
 	margin:0;
 	padding: 1rem;
-	background-color: rgb(255,255,255);
+	color: rgb(255,255,255);
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
-	font-weight: bold;
+	font-weight: 100;
 	font-size: 1.2rem;
-	color: rgb(160,160,160);}
+	background-color: rgb(190,190,190);}
 
 /* Each article */
 
 article.news {
 	padding: 1rem;
-	max-width: 50rem;
 	font-size: 1rem;
 	line-height: 1.6rem;}
 
@@ -142,5 +140,30 @@ article pre {
 
 .author {color: rgb(40,40,40);}
 .postdate {color: rgb(40,40,40);}
+
+/* Here starts the rule specific for larger screens */
+
+@media screen and (min-width: 50em) {
+
+body {background-color: #eee;}
+#body {
+   margin:auto;
+   width: 50em;}
+
+h1 {margin: 0;
+	text-align: left;
+    width: 50em;
+    padding: 1rem 3rem;}
+
+section.newsday {
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    }
+
+.day {	padding: 1rem 3rem;}   
+
+article.news {padding: 1rem 3rem;}
+
+}
 
 
