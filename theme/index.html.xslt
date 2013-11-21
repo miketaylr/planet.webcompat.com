@@ -138,25 +138,7 @@
                   </xsl:choose>
                   <xsl:value-of select="planet:name"/>
                 </a>
-
-<!--                 <xsl:if test="$posts[string-length(atom:title) &gt; 0]">
-                  <ul>
-                    <xsl:for-each select="$posts">
-                      <xsl:if test="string-length(atom:title) &gt; 0">
-                        <li>
-                          <a href="{atom:link[@rel='alternate']/@href}">
-                            <xsl:if test="atom:title/@xml:lang != @xml:lang">
-                              <xsl:attribute name="xml:lang"
-                                select="{atom:title/@xml:lang}"/>
-                            </xsl:if>
-                            <xsl:value-of select="atom:title"/>
-                          </a>
-                        </li>
-                      </xsl:if>
-                    </xsl:for-each>
-                  </ul>
-                </xsl:if>
- -->              </li>
+              </li>
             </xsl:for-each>
             <xsl:text>&#10;</xsl:text>
           </ul>
