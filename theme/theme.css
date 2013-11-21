@@ -61,7 +61,7 @@ h1 {padding: 1rem 1rem 1rem 5rem;
 	color: rgb(40,40,40);
 	background-image: url("underconstruction.gif");
 	background-repeat: no-repeat;
-	background-position: left, center;
+	background-position: 5px center;
 	font-family: "Andale Mono", "Courier New", Courier, monospace;
 	margin-bottom: 0;}
 
@@ -141,6 +141,29 @@ article pre {
 .author {color: rgb(40,40,40);}
 .postdate {color: rgb(40,40,40);}
 
+/* Subscription */
+
+.subscription {
+    border-top: 1px solid rgb(230,230,230);
+    font-weight:400;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	padding:1.5rem 1rem 1rem 1rem;}
+
+.subscription li {margin:.5rem 0 0 0;}
+
+/* Footer */
+footer {
+    margin-top: 2rem;
+    border-top: 1px solid rgb(230,230,230);
+    font-weight:200;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	padding:1rem;}
+footer span {
+    display:block;
+    padding:0 0 .5rem 0;}
+footer span.updated time {font-weight: 400;}
+
+
 /* Here starts the rule specific for larger screens */
 
 @media screen and (min-width: 50em) {
@@ -149,11 +172,6 @@ body {background-color: #eee;}
 #body {
    margin:auto;
    width: 50em;}
-
-h1 {margin: 0;
-	text-align: left;
-    width: 50em;
-    padding: 1rem 3rem;}
 
 section.newsday {
     background-color: #fff;
@@ -164,6 +182,12 @@ section.newsday {
 
 article.news {padding: 1rem 3rem;}
 
+.subscription, footer, h1 {
+    width: 50em;
+    margin:auto;}
+
+h1 {background-position: 50px center;
+    padding:1rem 0 1rem 6rem;}
 }
 
 
