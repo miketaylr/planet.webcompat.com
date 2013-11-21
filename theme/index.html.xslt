@@ -42,47 +42,11 @@
           <xsl:text>&#10;&#10;</xsl:text>
         </div>
 
-        <h1>Footnotes</h1>
         <xsl:text>&#10;&#10;</xsl:text>
-
-        <div id="sidebar">
-          <h2>Info</h2>
-
-          <dl>
-            <dt>Last updated:</dt>
-            <dd>
-              <time datetime="{atom:updated}" title="GMT">
-                <xsl:value-of select="atom:updated/@planet:format"/>
-              </time>
-            </dd>
-            <dt>Powered by:</dt>
-            <dd>
-              <a href="http://intertwingly.net/code/venus/">
-                <img src="images/venus.png" width="80" height="15"
-                  alt="Venus" border="0"/>
-              </a>
-            </dd>
-            <dt>Export:</dt>
-            <dd>
-              <ul>
-                <li>
-                  <a href="opml.xml">
-                    <img src="images/opml.png" alt="OPML"/>
-                  </a>
-                </li>
-                <li>
-                  <a href="foafroll.xml">
-                    <img src="images/foaf.png" alt="FOAF"/>
-                  </a>
-                </li>
-              </ul>
-            </dd>
-          </dl>
-        </div>
-
-        <xsl:text>&#10;&#10;</xsl:text>
-        <div id="footer">
+        <section class="subscription">
+          <xsl:text>&#10;</xsl:text>
           <h2>Subscriptions</h2>
+          <xsl:text>&#10;&#10;</xsl:text>
           <ul>
             <xsl:for-each select="planet:source">
               <xsl:sort select="planet:name"/>
@@ -138,31 +102,27 @@
                   </xsl:choose>
                   <xsl:value-of select="planet:name"/>
                 </a>
-
-                <xsl:if test="$posts[string-length(atom:title) &gt; 0]">
-                  <ul>
-                    <xsl:for-each select="$posts">
-                      <xsl:if test="string-length(atom:title) &gt; 0">
-                        <li>
-                          <a href="{atom:link[@rel='alternate']/@href}">
-                            <xsl:if test="atom:title/@xml:lang != @xml:lang">
-                              <xsl:attribute name="xml:lang"
-                                select="{atom:title/@xml:lang}"/>
-                            </xsl:if>
-                            <xsl:value-of select="atom:title"/>
-                          </a>
-                        </li>
-                      </xsl:if>
-                    </xsl:for-each>
-                  </ul>
-                </xsl:if>
               </li>
             </xsl:for-each>
             <xsl:text>&#10;</xsl:text>
           </ul>
-        </div>
+          <xsl:text>&#10;</xsl:text>
+        </section>
 
-        <xsl:text>&#10;</xsl:text>
+        <xsl:text>&#10;&#10;</xsl:text>
+        <footer>
+          <xsl:text>&#10;</xsl:text>
+          <span class="updated">Last updated:
+            <time datetime="{atom:updated}" title="GMT">
+              <xsl:value-of select="atom:updated/@planet:format"/>
+            </time>
+          </span>
+          <xsl:text>&#10;</xsl:text>
+          <span class="source">planet.webcompat.com - <a href="https://github.com/miketaylr/planet.webcompat.com/">code</a>
+          </span>
+          <xsl:text>&#10;</xsl:text>
+        </footer>
+        <xsl:text>&#10;&#10;</xsl:text>
       </body>
     </html>
   </xsl:template>
