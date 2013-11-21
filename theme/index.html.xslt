@@ -42,44 +42,6 @@
           <xsl:text>&#10;&#10;</xsl:text>
         </div>
 
-        <h1>Footnotes</h1>
-        <xsl:text>&#10;&#10;</xsl:text>
-
-        <div id="sidebar">
-          <h2>Info</h2>
-
-          <dl>
-            <dt>Last updated:</dt>
-            <dd>
-              <time datetime="{atom:updated}" title="GMT">
-                <xsl:value-of select="atom:updated/@planet:format"/>
-              </time>
-            </dd>
-            <dt>Powered by:</dt>
-            <dd>
-              <a href="http://intertwingly.net/code/venus/">
-                <img src="images/venus.png" width="80" height="15"
-                  alt="Venus" border="0"/>
-              </a>
-            </dd>
-            <dt>Export:</dt>
-            <dd>
-              <ul>
-                <li>
-                  <a href="opml.xml">
-                    <img src="images/opml.png" alt="OPML"/>
-                  </a>
-                </li>
-                <li>
-                  <a href="foafroll.xml">
-                    <img src="images/foaf.png" alt="FOAF"/>
-                  </a>
-                </li>
-              </ul>
-            </dd>
-          </dl>
-        </div>
-
         <xsl:text>&#10;&#10;</xsl:text>
         <section class="subscription">
           <xsl:text>&#10;</xsl:text>
@@ -148,7 +110,19 @@
         </section>
 
         <xsl:text>&#10;&#10;</xsl:text>
-        <footer>planet.webcompat.com - <a href="https://github.com/miketaylr/planet.webcompat.com/">code</a></footer>
+        <footer>
+          <xsl:text>&#10;</xsl:text>
+          <span class="updated">Last updated:
+            <time datetime="{atom:updated}" title="GMT">
+              <xsl:value-of select="atom:updated/@planet:format"/>
+            </time>
+          </span>
+          <xsl:text>&#10;</xsl:text>
+          <span class="source">planet.webcompat.com - <a href="https://github.com/miketaylr/planet.webcompat.com/">code</a>
+          </span>
+          <xsl:text>&#10;</xsl:text>
+        </footer>
+        <xsl:text>&#10;&#10;</xsl:text>
       </body>
     </html>
   </xsl:template>
