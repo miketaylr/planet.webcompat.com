@@ -81,8 +81,10 @@
         </div>
 
         <xsl:text>&#10;&#10;</xsl:text>
-        <div id="footer">
+        <section class="subscription">
+          <xsl:text>&#10;</xsl:text>
           <h2>Subscriptions</h2>
+          <xsl:text>&#10;&#10;</xsl:text>
           <ul>
             <xsl:for-each select="planet:source">
               <xsl:sort select="planet:name"/>
@@ -142,9 +144,11 @@
             </xsl:for-each>
             <xsl:text>&#10;</xsl:text>
           </ul>
-        </div>
+          <xsl:text>&#10;</xsl:text>
+        </section>
 
-        <xsl:text>&#10;</xsl:text>
+        <xsl:text>&#10;&#10;</xsl:text>
+        <footer>planet.webcompat.com - <a href="https://github.com/miketaylr/planet.webcompat.com/">code</a></footer>
       </body>
     </html>
   </xsl:template>
