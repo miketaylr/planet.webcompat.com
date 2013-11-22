@@ -11,103 +11,20 @@
     <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
     <xsl:text>&#10;</xsl:text>
     <html xmlns="http://www.w3.org/1999/xhtml">
-
-      <!-- head -->
-      <xsl:text>&#10;&#10;</xsl:text>
-      <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" href="theme.css" type="text/css" />
-        <title><xsl:value-of select="atom:title"/></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="robots" content="noindex,nofollow" />
-        <meta name="generator" content="{atom:generator}" />
-        <xsl:if test="atom:link[@rel='self']">
-          <link rel="alternate" href="{atom:link[@rel='self']/@href}"
-            title="{atom:title}" type="{atom:link[@rel='self']/@type}" />
-        </xsl:if>
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <script defer="defer" src="personalize.js">
-          <xsl:comment><!--HTML Compatibility--></xsl:comment>
-        </script>
-      </head>
-
-      <xsl:text>&#10;&#10;</xsl:text>
+      <xsl:text>&#10;</xsl:text>
+      <!-- Calling the head template -->
+      <xsl:call-template name="htmlhead"/>
       <body>
         <xsl:text>&#10;</xsl:text>
         <h1><xsl:value-of select="atom:title"/></h1>
-
-        <xsl:text>&#10;&#10;</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <!-- CONTENT -->
         <div id="body">
           <xsl:apply-templates select="atom:entry"/>
           <xsl:text>&#10;&#10;</xsl:text>
         </div>
-
         <xsl:text>&#10;&#10;</xsl:text>
-        <section class="subscription">
-          <xsl:text>&#10;</xsl:text>
-          <h2>Subscriptions</h2>
-          <xsl:text>&#10;&#10;</xsl:text>
-          <ul>
-            <xsl:for-each select="planet:source">
-              <xsl:sort select="planet:name"/>
-              <xsl:variable name="id" select="atom:id"/>
-              <xsl:variable name="posts"
-                select="/atom:feed/atom:entry[atom:source/atom:id = $id]"/>
-              <xsl:text>&#10;</xsl:text>
-              <li>
-                <!-- icon -->
-                <a title="subscribe">
-                  <xsl:choose>
-                    <xsl:when test="planet:http_location">
-                      <xsl:attribute name="href">
-                        <xsl:value-of select="planet:http_location"/>
-                      </xsl:attribute>
-                    </xsl:when>
-                    <xsl:when test="atom:link[@rel='self']/@href">
-                      <xsl:attribute name="href">
-                        <xsl:value-of select="atom:link[@rel='self']/@href"/>
-                      </xsl:attribute>
-                    </xsl:when>
-                  </xsl:choose>
-                  <img src="images/feed-icon-10x10.png" alt="(feed)"/>
-                </a>
-                <xsl:text> </xsl:text>
-
-                <!-- name -->
-                <a>
-                  <xsl:if test="atom:link[@rel='alternate']/@href">
-                    <xsl:attribute name="href">
-                      <xsl:value-of select="atom:link[@rel='alternate']/@href"/>
-                    </xsl:attribute>
-                  </xsl:if>
-
-                  <xsl:choose>
-                    <xsl:when test="planet:message">
-                      <xsl:attribute name="class">
-                        <xsl:if test="$posts">active message</xsl:if>
-                        <xsl:if test="not($posts)">message</xsl:if>
-                      </xsl:attribute>
-                      <xsl:attribute name="title">
-                        <xsl:value-of select="planet:message"/>
-                      </xsl:attribute>
-                    </xsl:when>
-                    <xsl:when test="atom:title">
-                      <xsl:attribute name="title">
-                        <xsl:value-of select="atom:title"/>
-                      </xsl:attribute>
-                      <xsl:if test="$posts">
-                        <xsl:attribute name="class">active</xsl:attribute>
-                      </xsl:if>
-                    </xsl:when>
-                  </xsl:choose>
-                  <xsl:value-of select="planet:name"/>
-                </a>
-              </li>
-            </xsl:for-each>
-            <xsl:text>&#10;</xsl:text>
-          </ul>
-          <xsl:text>&#10;</xsl:text>
-        </section>
+        <xsl:call-template name="subcriptionlist"/>
 
         <xsl:text>&#10;&#10;</xsl:text>
         <footer>
@@ -236,6 +153,93 @@
     </article>
     </section>
 
+  </xsl:template>
+
+  <!-- HEAD TEMPLATE -->
+  <xsl:template name="htmlhead">
+    <head><xsl:text>&#10;</xsl:text>
+      <meta charset="utf-8"/><xsl:text>&#10;</xsl:text>
+      <link rel="stylesheet" href="theme.css" type="text/css" /><xsl:text>&#10;</xsl:text>
+      <title><xsl:value-of select="atom:title"/></title><xsl:text>&#10;</xsl:text>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" /><xsl:text>&#10;</xsl:text>
+      <meta name="robots" content="noindex,nofollow" /><xsl:text>&#10;</xsl:text>
+      <meta name="generator" content="{atom:generator}" /><xsl:text>&#10;</xsl:text>
+      <xsl:if test="atom:link[@rel='self']">
+        <link rel="alternate" href="{atom:link[@rel='self']/@href}"
+          title="{atom:title}" type="{atom:link[@rel='self']/@type}" /><xsl:text>&#10;</xsl:text>
+      </xsl:if>
+      <link rel="shortcut icon" href="/favicon.ico" /><xsl:text>&#10;</xsl:text>
+      <script defer="defer" src="personalize.js"><xsl:comment><!--comment--></xsl:comment></script><xsl:text>&#10;</xsl:text>
+    </head><xsl:text>&#10;</xsl:text>
+  </xsl:template>
+
+  <!-- SUBSCRIPTION TEMPLATE -->
+  <xsl:template name="subcriptionlist">
+    <section class="subscription">
+    <xsl:text>&#10;</xsl:text>
+    <h2>Subscriptions</h2>
+    <xsl:text>&#10;&#10;</xsl:text>
+    <ul>
+      <xsl:for-each select="planet:source">
+        <xsl:sort select="planet:name"/>
+        <xsl:variable name="id" select="atom:id"/>
+        <xsl:variable name="posts"
+          select="/atom:feed/atom:entry[atom:source/atom:id = $id]"/>
+        <xsl:text>&#10;</xsl:text>
+        <li>
+          <!-- icon -->
+          <a title="subscribe">
+            <xsl:choose>
+              <xsl:when test="planet:http_location">
+                <xsl:attribute name="href">
+                  <xsl:value-of select="planet:http_location"/>
+                </xsl:attribute>
+              </xsl:when>
+              <xsl:when test="atom:link[@rel='self']/@href">
+                <xsl:attribute name="href">
+                  <xsl:value-of select="atom:link[@rel='self']/@href"/>
+                </xsl:attribute>
+              </xsl:when>
+            </xsl:choose>
+            <img src="feed.png" alt="(feed)"/>
+          </a>
+          <xsl:text> </xsl:text>
+
+          <!-- name -->
+          <a>
+            <xsl:if test="atom:link[@rel='alternate']/@href">
+              <xsl:attribute name="href">
+                <xsl:value-of select="atom:link[@rel='alternate']/@href"/>
+              </xsl:attribute>
+            </xsl:if>
+
+            <xsl:choose>
+              <xsl:when test="planet:message">
+                <xsl:attribute name="class">
+                  <xsl:if test="$posts">active message</xsl:if>
+                  <xsl:if test="not($posts)">message</xsl:if>
+                </xsl:attribute>
+                <xsl:attribute name="title">
+                  <xsl:value-of select="planet:message"/>
+                </xsl:attribute>
+              </xsl:when>
+              <xsl:when test="atom:title">
+                <xsl:attribute name="title">
+                  <xsl:value-of select="atom:title"/>
+                </xsl:attribute>
+                <xsl:if test="$posts">
+                  <xsl:attribute name="class">active</xsl:attribute>
+                </xsl:if>
+              </xsl:when>
+            </xsl:choose>
+            <xsl:value-of select="planet:name"/>
+          </a>
+        </li>
+      </xsl:for-each>
+      <xsl:text>&#10;</xsl:text>
+    </ul>
+    <xsl:text>&#10;</xsl:text>
+  </section>
   </xsl:template>
 
   <!-- xhtml content -->
