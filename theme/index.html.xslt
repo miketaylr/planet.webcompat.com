@@ -11,32 +11,14 @@
     <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
     <xsl:text>&#10;</xsl:text>
     <html xmlns="http://www.w3.org/1999/xhtml">
-
-      <!-- head -->
-      <xsl:text>&#10;&#10;</xsl:text>
-      <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" href="theme.css" type="text/css" />
-        <title><xsl:value-of select="atom:title"/></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="robots" content="noindex,nofollow" />
-        <meta name="generator" content="{atom:generator}" />
-        <xsl:if test="atom:link[@rel='self']">
-          <link rel="alternate" href="{atom:link[@rel='self']/@href}"
-            title="{atom:title}" type="{atom:link[@rel='self']/@type}" />
-        </xsl:if>
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <script defer="defer" src="personalize.js">
-          <xsl:comment><!--HTML Compatibility--></xsl:comment>
-        </script>
-      </head>
-
-      <xsl:text>&#10;&#10;</xsl:text>
+      <xsl:text>&#10;</xsl:text>
+      !-- Calling the head template -->
+      <xsl:call-template name="htmlhead"/>
       <body>
         <xsl:text>&#10;</xsl:text>
         <h1><xsl:value-of select="atom:title"/></h1>
+        <xsl:text>&#10;</xsl:text>
 
-        <xsl:text>&#10;&#10;</xsl:text>
         <div id="body">
           <xsl:apply-templates select="atom:entry"/>
           <xsl:text>&#10;&#10;</xsl:text>
@@ -237,6 +219,25 @@
     </section>
 
   </xsl:template>
+
+  <!-- HEAD TEMPLATE -->
+  <xsl:template name="htmlhead">
+    <head><xsl:text>&#10;</xsl:text>
+      <meta charset="utf-8"/><xsl:text>&#10;</xsl:text>
+      <link rel="stylesheet" href="theme.css" type="text/css" /><xsl:text>&#10;</xsl:text>
+      <title><xsl:value-of select="atom:title"/></title><xsl:text>&#10;</xsl:text>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" /><xsl:text>&#10;</xsl:text>
+      <meta name="robots" content="noindex,nofollow" /><xsl:text>&#10;</xsl:text>
+      <meta name="generator" content="{atom:generator}" /><xsl:text>&#10;</xsl:text>
+      <xsl:if test="atom:link[@rel='self']">
+        <link rel="alternate" href="{atom:link[@rel='self']/@href}"
+          title="{atom:title}" type="{atom:link[@rel='self']/@type}" /><xsl:text>&#10;</xsl:text>
+      </xsl:if>
+      <link rel="shortcut icon" href="/favicon.ico" /><xsl:text>&#10;</xsl:text>
+      <script defer="defer" src="personalize.js"></script><xsl:text>&#10;</xsl:text>
+    </head><xsl:text>&#10;</xsl:text>
+  </xsl:template>
+
 
   <!-- xhtml content -->
   <xsl:template match="atom:content/xhtml:div | atom:summary/xhtml:div">
