@@ -50,7 +50,7 @@ em {font-style: italic;}
 abbr {border-bottom: 1px dotted rgb(79, 74, 75);}
 
 /* "responsive" */
-img {width:100%;}
+img {max-width:100%;}
 pre {white-space: pre-wrap;}
 
 /* Title */
