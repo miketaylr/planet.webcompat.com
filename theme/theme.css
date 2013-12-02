@@ -58,7 +58,7 @@ abbr {border-bottom: 1px dotted rgb(79, 74, 75);}
 img {max-width:100%;
 	height: 100%;}
 
-pre, code {white-space: pre-wrap;}
+pre {white-space: pre-wrap;}
 
 
 /* Title */
