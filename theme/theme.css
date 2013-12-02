@@ -44,26 +44,37 @@ abbr,acronym { border:0;
 
 @viewport {width: device-width;}
 
+@font-face {
+    font-family: "DIN";
+    src:url(dinengschrift-webfont.woff);
+    }
+
 /* some very very very basic stuff */
 strong {font-weight: bold;}
 em {font-style: italic;}
 abbr {border-bottom: 1px dotted rgb(79, 74, 75);}
 
 /* "responsive" */
-img {max-width:100%;}
+img {max-width:100%;
+	height: 100%;}
+
 pre {white-space: pre-wrap;}
+
 
 /* Title */
 
-h1 {padding: 1rem 1rem 1rem 5rem;
-	font-size: 1rem;
-	background-color: rgb(240,240,240);
-	color: rgb(40,40,40);
-	background-image: url("underconstruction.gif");
-	background-repeat: no-repeat;
-	background-position: 5px center;
-	font-family: "Andale Mono", "Courier New", Courier, monospace;
-	margin-bottom: 0;}
+h1 {
+    background-color: rgb(30,30,30);
+    background-image: url("underconstruction.png");
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    background-size: 3rem;
+    color: rgb(70,70,70);
+    font-family: "DIN", "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 2rem;
+    margin-bottom: 0;
+    padding: 1rem 1rem 1rem 5rem;
+}
 
 /* body */
 
@@ -77,22 +88,25 @@ h1 {padding: 1rem 1rem 1rem 5rem;
 .day {
 	margin:0;
 	padding: 1rem;
-	color: rgb(255,255,255);
+	color: rgb(30,30,30);
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
-	font-weight: 100;
-	font-size: 1.2rem;
-	background-color: rgb(190,190,190);}
+	font-weight: 200;
+	font-size: 1.2rem;  
+	background-color: rgb(255,200,41);}
 
 /* Each article */
 
 article.news {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
 	padding: 1rem;
 	font-size: 1rem;
-	line-height: 1.6rem;}
+	line-height: 1.6rem;
+	border-bottom: 3px solid rgb(230,230,230)}
 
 h3.posttitle a {
-	font-size: 1.3rem;
-	font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-family: "DIN", "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 300;    
+	font-size: 1.6rem;
 	text-decoration: none;
 	color: rgb(40,40,40);
 }
@@ -123,23 +137,46 @@ article a {text-decoration: none;
 article a:visited {color:rgb(40,40,40);}
 
 article pre {
-	font-size: .9rem;
+    padding: 2rem;
+	font-size: .8rem;
     font-family: "Andale Mono", "Courier New", Courier, monospace;
-	line-height: 1.2rem;}
+	line-height: 1.2rem;
+    background-color: rgb(240,240,240);
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.5) 35px, rgba(255,255,255,.5) 70px);
+    border-left: 5px rgb(255,200,41) solid;
+    overflow: auto;
+}
 
 
 /* Meta */
 
-.meta {
-	font-family: "Helvetica Neue", Helvetica, sans-serif;
-	color: rgb(140,140,140);}
+.meta {	
+    font-size:.8rem;
+    padding: 1rem 1rem 1rem 0;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    color: rgb(100,100,100);
+    font-variant: small-caps;
+    line-height: 1.2rem;
+    border-bottom: 1px solid rgb(220,220,220);
+    margin-bottom: 2rem;}
+
 .meta a.blogtitle {
+    padding-left:1.2rem;
 	text-decoration: none;
-	color: rgb(99,00,00);
+    border:none;
+    font-weight: 600;
+    color: rgb(150,150,150);
 }
 
-.author {color: rgb(40,40,40);}
-.postdate {color: rgb(40,40,40);}
+.metaauthor, .time {
+    display:block;
+    font-weight: 600;
+    color: rgb(180,180,180);
+}
+.author, .postdate {
+    color: rgb(60,60,60);
+    font-weight: 400;
+    font-variant: normal;}
 
 /* Subscription */
 
@@ -180,7 +217,8 @@ section.newsday {
 
 .day {	padding: 1rem 3rem;}
 
-article.news {padding: 1rem 3rem;}
+article.news {padding: 1rem 3rem;
+    }
 
 .subscription, footer, h1 {
     width: 50em;
@@ -188,5 +226,5 @@ article.news {padding: 1rem 3rem;}
 
 h1 {background-position: 50px center;
     padding:1rem 0 1rem 6rem;}
-}
+
 

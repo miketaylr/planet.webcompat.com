@@ -7,6 +7,11 @@
 
   <xsl:output method="xml" omit-xml-declaration="yes"/>
 
+  <xsl:key 
+      name="groupbydate" 
+      match="atom:entry" 
+      use="substring-before(atom:updated, 'T')"/>
+
   <xsl:template match="atom:feed">
     <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
     <xsl:text>&#10;</xsl:text>
@@ -20,7 +25,9 @@
         <xsl:text>&#10;</xsl:text>
         <!-- CONTENT -->
         <div id="body">
-          <xsl:apply-templates select="atom:entry"/>
+          <xsl:apply-templates select="atom:entry[
+                generate-id() = 
+                generate-id(key('groupbydate', substring-before(atom:updated, 'T'))[1])]"/>
           <xsl:text>&#10;&#10;</xsl:text>
         </div>
         <xsl:text>&#10;&#10;</xsl:text>
@@ -48,9 +55,7 @@
     <xsl:text>&#10;&#10;</xsl:text>
     <section class="newsday">
     <!-- date header -->
-    <xsl:variable name="date" select="substring(atom:updated,1,10)"/>
-    <xsl:if test="not(preceding-sibling::atom:entry
-      [substring(atom:updated,1,10) = $date])">
+    <xsl:variable name="date" select="substring-before(atom:updated, 'T')"/>
       <xsl:text>&#10;&#10;</xsl:text>
       <h2 class="day">
         <time datetime="{$date}">
@@ -59,98 +64,12 @@
           <xsl:value-of select="substring-before(substring-after(atom:updated/@planet:format,', '), ' ')"/>
         </time>
       </h2>
-    </xsl:if>
 
     <xsl:text>&#10;&#10;</xsl:text>
-    <article class="news {atom:source/planet:css-id}">
+    <xsl:apply-templates 
+        select="key('groupbydate', substring-before(atom:updated, 'T'))"
+        mode="atom:entry"/>
 
-      <xsl:if test="@xml:lang">
-        <xsl:attribute name="xml:lang">
-          <xsl:value-of select="@xml:lang"/>
-        </xsl:attribute>
-      </xsl:if>
-
-      <!-- entry title -->
-      <xsl:text>&#10;</xsl:text>
-      <h3 class="posttitle permalink">
-<!--         <xsl:choose>
-          <xsl:when test="atom:source/atom:icon">
-            <img src="{atom:source/atom:icon}" class="icon"/>
-          </xsl:when>
-          <xsl:when test="atom:source/planet:favicon">
-            <img src="{atom:source/planet:favicon}" class="icon"/>
-          </xsl:when>
-        </xsl:choose> -->
-        <xsl:if test="string-length(atom:title) &gt; 0">
-          <!-- <xsl:text>&#x2014;</xsl:text> -->
-          <a href="{atom:link[@rel='alternate']/@href}">
-            <xsl:if test="atom:title/@xml:lang != @xml:lang">
-              <xsl:attribute name="xml:lang" select="{atom:title/@xml:lang}"/>
-            </xsl:if>
-            <xsl:value-of select="atom:title"/>
-          </a>
-        </xsl:if>
-      </h3>
-      <!-- entry meta -->
-      <div class="meta">
-        <!--Blog title-->
-        <a class="blogtitle">
-          <xsl:if test="atom:source/atom:link[@rel='alternate']/@href">
-            <xsl:attribute name="href">
-              <xsl:value-of
-                select="atom:source/atom:link[@rel='alternate']/@href"/>
-            </xsl:attribute>
-          </xsl:if>
-
-          <xsl:attribute name="title">
-            <xsl:value-of select="atom:source/atom:title"/>
-          </xsl:attribute>
-          <xsl:value-of select="atom:source/planet:name"/>
-        </a>
-
-        <!-- Author name -->
-        <xsl:text>&#10;</xsl:text>
-        <span class="metaauthor">
-          <xsl:choose>
-            <xsl:when test="atom:author/atom:name">
-                <xsl:text> by </xsl:text>
-                <span class="author">
-                  <xsl:value-of select="atom:author/atom:name"/>
-                </span>
-            </xsl:when>
-            <xsl:when test="atom:source/atom:author/atom:name">
-                <xsl:text> by </xsl:text>
-                <span class="author">
-                  <xsl:value-of select="atom:source/atom:author/atom:name"/>
-                </span>
-            </xsl:when>
-          </xsl:choose>
-        </span>
-
-        <!-- Publication time -->
-        <xsl:text>&#10;</xsl:text>
-        <span class="time">
-          <xsl:text> at </xsl:text>
-          <time class="postdate" datetime="{atom:updated}" title="GMT">
-            <xsl:value-of select="atom:updated/@planet:format"/>
-          </time>
-      </span>
-      </div>
-
-      <!-- entry content -->
-      <div class="post">
-        <xsl:text>&#10;</xsl:text>
-        <xsl:choose>
-          <xsl:when test="atom:content">
-            <xsl:apply-templates select="atom:content"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="atom:summary"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </div>
-
-    </article>
     </section>
 
   </xsl:template>
@@ -241,6 +160,101 @@
     <xsl:text>&#10;</xsl:text>
   </section>
   </xsl:template>
+
+  <!-- INDIVIDUAL BLOG POST -->
+  <xsl:template match="atom:entry" mode="atom:entry">
+    <article class="news {atom:source/planet:css-id}">
+
+      <xsl:if test="@xml:lang">
+        <xsl:attribute name="xml:lang">
+          <xsl:value-of select="@xml:lang"/>
+        </xsl:attribute>
+      </xsl:if>
+
+      <!-- entry title -->
+      <xsl:text>&#10;</xsl:text>
+      <h3 class="posttitle permalink">
+<!--         <xsl:choose>
+          <xsl:when test="atom:source/atom:icon">
+            <img src="{atom:source/atom:icon}" class="icon"/>
+          </xsl:when>
+          <xsl:when test="atom:source/planet:favicon">
+            <img src="{atom:source/planet:favicon}" class="icon"/>
+          </xsl:when>
+        </xsl:choose> -->
+        <xsl:if test="string-length(atom:title) &gt; 0">
+          <!-- <xsl:text>&#x2014;</xsl:text> -->
+          <a href="{atom:link[@rel='alternate']/@href}">
+            <xsl:if test="atom:title/@xml:lang != @xml:lang">
+              <xsl:attribute name="xml:lang" select="{atom:title/@xml:lang}"/>
+            </xsl:if>
+            <xsl:value-of select="atom:title"/>
+          </a>
+        </xsl:if>
+      </h3>
+      <!-- entry meta -->
+      <div class="meta">
+        <!--Blog title-->
+        <a class="blogtitle">
+          <xsl:if test="atom:source/atom:link[@rel='alternate']/@href">
+            <xsl:attribute name="href">
+              <xsl:value-of
+                select="atom:source/atom:link[@rel='alternate']/@href"/>
+            </xsl:attribute>
+          </xsl:if>
+
+          <xsl:attribute name="title">
+            <xsl:value-of select="atom:source/atom:title"/>
+          </xsl:attribute>
+          <xsl:value-of select="atom:source/planet:name"/>
+        </a>
+
+        <!-- Author name -->
+        <xsl:text>&#10;</xsl:text>
+        <span class="metaauthor">
+          <xsl:choose>
+            <xsl:when test="atom:author/atom:name">
+                <xsl:text> by </xsl:text>
+                <span class="author">
+                  <xsl:value-of select="atom:author/atom:name"/>
+                </span>
+            </xsl:when>
+            <xsl:when test="atom:source/atom:author/atom:name">
+                <xsl:text> by </xsl:text>
+                <span class="author">
+                  <xsl:value-of select="atom:source/atom:author/atom:name"/>
+                </span>
+            </xsl:when>
+          </xsl:choose>
+        </span>
+
+        <!-- Publication time -->
+        <xsl:text>&#10;</xsl:text>
+        <span class="time">
+          <xsl:text> at </xsl:text>
+          <time class="postdate" datetime="{atom:updated}" title="GMT">
+            <xsl:value-of select="atom:updated/@planet:format"/>
+          </time>
+      </span>
+      </div>
+
+      <!-- entry content -->
+      <div class="post">
+        <xsl:text>&#10;</xsl:text>
+        <xsl:choose>
+          <xsl:when test="atom:content">
+            <xsl:apply-templates select="atom:content"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="atom:summary"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </div>
+
+    </article>
+
+  </xsl:template>
+
 
   <!-- xhtml content -->
   <xsl:template match="atom:content/xhtml:div | atom:summary/xhtml:div">
