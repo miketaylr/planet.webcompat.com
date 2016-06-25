@@ -56,7 +56,7 @@ abbr {border-bottom: 1px dotted rgb(79, 74, 75);}
 
 /* "responsive" */
 img {max-width:100%;
-	height: 100%;}
+  height: 100%;}
 
 pre {white-space: pre-wrap;}
 
@@ -76,71 +76,77 @@ h1 {
     padding: 1rem 1rem 1rem 5rem;
 }
 
+@media all and (max-width: 30em) {
+  h1 {
+    font-size: 1.4rem;
+  }
+}
+
 /* body */
 
 #body {margin: 0 auto;
-	padding:0;}
+  padding:0;}
 
 
 /* news of the day */
 
 .newsday {margin: 0 0 1rem 0;}
 .day {
-	margin:0;
-	padding: 1rem;
-	color: rgb(30,30,30);
-	font-family: "Helvetica Neue", Helvetica, sans-serif;
-	font-weight: 200;
-	font-size: 1.2rem;  
-	background-color: rgb(255,200,41);}
+  margin:0;
+  padding: 1rem;
+  color: rgb(30,30,30);
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 1.2rem;
+  background-color: rgb(255,200,41);}
 
 /* Each article */
 
 article.news {
     font-family: "Helvetica Neue", Helvetica, sans-serif;
-	padding: 1rem;
-	font-size: 1rem;
-	line-height: 1.6rem;
-	border-bottom: 3px solid rgb(230,230,230)}
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.6rem;
+  border-bottom: 3px solid rgb(230,230,230)}
 
 h3.posttitle a {
     font-family: "DIN", "Helvetica Neue", Helvetica, sans-serif;
-    font-weight: 300;    
-	font-size: 1.6rem;
-	text-decoration: none;
-	color: rgb(40,40,40);
+    font-weight: 300;
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: rgb(40,40,40);
 }
 
 /* Taking care of the style armageddon for articles */
 article h1 {font-weight: bold;
-	font-size:1.4rem;}
+  font-size:1.4rem;}
 article h2 {font-weight: bold;
-	font-size:1.3rem;}
+  font-size:1.3rem;}
 article h3 {font-weight: bold;
-	font-size:1.2rem;}
+  font-size:1.2rem;}
 article h4 {font-weight: bold;
-	font-size:1.1rem;}
+  font-size:1.1rem;}
 article h5 {font-weight: bold;
-	font-size:1rem;}
+  font-size:1rem;}
 article h6 {font-weight: bold;
-	font-size:1rem;}
+  font-size:1rem;}
 
 article p  {margin: 1rem 0;}
 article ul, article dl, article ol, article blockquote, article pre, article table {
-	margin: 2rem 1rem;}
+  margin: 2rem 1rem;}
 article li {list-style-type: disc;
-	list-style-position: inside;}
+  list-style-position: inside;}
 
 article a {text-decoration: none;
-	border-bottom: 1px dotted rgb(200,200,200);
-	color: rgb(); }
+  border-bottom: 1px dotted rgb(200,200,200);
+  color: rgb(); }
 article a:visited {color:rgb(40,40,40);}
 
 article pre {
     padding: 2rem;
-	font-size: .8rem;
+  font-size: .8rem;
     font-family: "Andale Mono", "Courier New", Courier, monospace;
-	line-height: 1.2rem;
+  line-height: 1.2rem;
     background-color: rgb(240,240,240);
     background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.5) 35px, rgba(255,255,255,.5) 70px);
     border-left: 5px rgb(255,200,41) solid;
@@ -150,7 +156,7 @@ article pre {
 
 /* Meta */
 
-.meta {	
+.meta {
     font-size:.8rem;
     padding: 1rem 1rem 1rem 0;
     font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -162,7 +168,7 @@ article pre {
 
 .meta a.blogtitle {
     padding-left:1.2rem;
-	text-decoration: none;
+  text-decoration: none;
     border:none;
     font-weight: 600;
     color: rgb(150,150,150);
@@ -183,8 +189,8 @@ article pre {
 .subscription {
     border-top: 1px solid rgb(230,230,230);
     font-weight:400;
-	font-family: "Helvetica Neue", Helvetica, sans-serif;
-	padding:1.5rem 1rem 1rem 1rem;}
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  padding:1.5rem 1rem 1rem 1rem;}
 
 .subscription li {margin:.5rem 0 0 0;}
 
@@ -193,8 +199,8 @@ footer {
     margin-top: 2rem;
     border-top: 1px solid rgb(230,230,230);
     font-weight:200;
-	font-family: "Helvetica Neue", Helvetica, sans-serif;
-	padding:1rem;}
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  padding:1rem;}
 footer span {
     display:block;
     padding:0 0 .5rem 0;}
@@ -220,11 +226,12 @@ section.newsday {
 article.news {padding: 1rem 3rem;
     }
 
-.subscription, footer, h1 {
+.subscription, footer {
     width: 50em;
     margin:auto;}
 
-h1 {background-position: 50px center;
-    padding:1rem 0 1rem 6rem;}
-
-
+h1 {
+    background-position: 50px center;
+    padding:1rem 0 1rem 6rem;
+    margin: auto;
+}
